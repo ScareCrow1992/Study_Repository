@@ -2,6 +2,14 @@
 
 
 
+[TOC]
+
+
+
+
+
+
+
 # 1. 자료형
 
 ## 1-1. 숫자형
@@ -736,7 +744,192 @@ KeyError: 3
 
 
 
-**교집합, 합집합, 차집합**
+**얕은 복사(copy)**
+
+* copy 메소드로 얕은복사를 수행
+
+```python
+>>> s = {1, 3, 5}
+>>> t = s.copy()
+>>> s
+{1, 3, 5}
+>>> t
+{1, 3, 5}
+>>> id(s)
+4334668264
+>>> id(t)
+4334666696
+```
+
+* 생성자로 복사 가능
+
+```python
+>>> s = {1, 3, 5}
+>>> t = set(s)
+>>> s
+{1, 3, 5}
+>>> t
+{1, 3, 5}
+>>> id(s)
+4334666248
+>>> id(t)
+4334667144
+```
+
+
+
+
+
+**집합 연산**
+
+* | - 합집합 연산자
+
+```python
+>>> a = {1, 2, 3, 4, 5}
+>>> b = {3, 4, 5, 6, 7}
+>>> c = a | b
+>>> a
+{1, 2, 3, 4, 5}
+>>> b
+{3, 4, 5, 6, 7}
+>>> c
+{1, 2, 3, 4, 5, 6, 7}
+```
+
+
+
+* & - 교집합 연산자
+
+```python
+>>> a = {1, 2, 3, 4, 5}
+>>> b = {3, 4, 5, 6, 7}
+>>> c = a & b
+>>> a
+{1, 2, 3, 4, 5}
+>>> b
+{3, 4, 5, 6, 7}
+>>> c
+{3, 4, 5}
+```
+
+
+
+* ^ - 대칭자집합 연산자(합집합 - 교집합)
+
+```python
+>>> a = {1, 2, 3, 4, 5}
+>>> b = {3, 4, 5, 6, 7}
+>>> c = a ^ b
+>>> a
+{1, 2, 3, 4, 5}
+>>> b
+{3, 4, 5, 6, 7}
+>>> c
+{1, 2, 6, 7}
+```
+
+
+
+
+
+**집합 연산 메소드**
+
+- union - 합집합
+
+```python
+>>> a = {1, 2, 3, 4, 5}
+>>> b = {3, 4, 5, 6, 7}
+>>> c = a.union(b)
+>>> a
+{1, 2, 3, 4, 5}
+>>> b
+{3, 4, 5, 6, 7}
+>>> c
+{1, 2, 3, 4, 5, 6, 7}
+```
+
+- intersection - 교집합
+
+```python
+>>> a = {1, 2, 3, 4, 5}
+>>> b = {3, 4, 5, 6, 7}
+>>> c = a.intersection(b)
+>>> a
+{1, 2, 3, 4, 5}
+>>> b
+{3, 4, 5, 6, 7}
+>>> c
+{3, 4, 5}
+```
+
+- difference - 차집합
+
+```python
+>>> a = {1, 2, 3, 4, 5}
+>>> b = {3, 4, 5, 6, 7}
+>>> c = a.difference(b)
+>>> a
+{1, 2, 3, 4, 5}
+>>> b
+{3, 4, 5, 6, 7}
+>>> c
+{1, 2}
+```
+
+- symmetric_difference : 대칭차집합 연산자(합집합 - 교집합)
+
+```python
+>>> a = {1, 2, 3, 4, 5}
+>>> b = {3, 4, 5, 6, 7}
+>>> c = a.symmetric_difference(b)
+>>> a
+{1, 2, 3, 4, 5}
+>>> b
+{3, 4, 5, 6, 7}
+>>> c
+{1, 2, 6, 7}
+```
+
+
+
+
+
+**기타 메소드**
+
+- issubset : 부분집합 여부 확인
+
+```python
+>>> a = {1, 2, 3, 4, 5}
+>>> b = {1, 2, 3}
+>>> a.issubset(b)
+False
+>>> b.issubset(a)
+True
+```
+
+- issuperset : issubset과 반대 superset인지 확인
+
+```python
+>>> a = {1, 2, 3, 4, 5}
+>>> b = {1, 2, 3}
+>>> a.issuperset(b)
+True
+>>> b.issuperset(a)
+False
+```
+
+- isdisjoint : 교집합이 없으면 True, 있으면 False
+
+```python
+>>> a = {1, 2, 3}
+>>> b = {4, 5, 6}
+>>> a.isdisjoint(b)
+True
+>>> c = {1, 2, 3}
+>>> d = {3, 4, 5}
+>>> c.isdisjoint(d)
+False
+```
 
 
 
@@ -744,19 +937,280 @@ KeyError: 3
 
 
 
-
-
-
-
-
-
-## 1- . 자료형 변환
+## 1-7. 자료형 변환
 
 ```python
 # 정수/실수 -> 문자열
 a = 3
 str(a) + "hi"
+
+# 문자열 -> 정수/실수
+num_str = '10'
+print(int(num_str))
+
+num_str = '10.2'
+print(float(num_str))
+
 ```
+
+
+
+
+
+
+
+# 2. 프로그램 구조
+
+## 2-1. if문
+
+```python
+If <조건문>:
+    <수행할 문장1> 
+    <수행할 문장2>
+    ...
+elif <조건문>:
+    <수행할 문장1>
+    <수행할 문장2>
+    ...
+elif <조건문>:
+    <수행할 문장1>
+    <수행할 문장2>
+    ...
+	...
+else:
+   <수행할 문장1>
+   <수행할 문장2>
+   ... 
+
+
+
+
+    
+# 사용 예
+>>> pocket = ['paper', 'cellphone']
+>>> card = True
+>>> if 'money' in pocket:
+...      print("택시를 타고가라")
+... elif card: 
+...      print("택시를 타고가라")
+... else:
+...      print("걸어가라")
+...
+택시를 타고가라
+
+
+if score >= 60:
+    message = "success"
+else:
+    message = "failure"
+
+    
+message = "success" if score >= 60 else "failure"
+
+```
+
+
+
+
+
+
+
+## 2-2 . while 문
+
+```python
+while <조건문>:
+    <수행할 문장1>
+    <수행할 문장2>
+    <수행할 문장3>
+    ...
+    
+    
+# 사용 예
+>>> treeHit = 0
+>>> while treeHit < 10:
+...     treeHit = treeHit +1
+...     print("나무를 %d번 찍었습니다." % treeHit)
+...     if treeHit == 10:
+...         print("나무 넘어갑니다.")
+...
+나무를 1번 찍었습니다.
+나무를 2번 찍었습니다.
+나무를 3번 찍었습니다.
+나무를 4번 찍었습니다.
+나무를 5번 찍었습니다.
+나무를 6번 찍었습니다.
+나무를 7번 찍었습니다.
+나무를 8번 찍었습니다.
+나무를 9번 찍었습니다.
+나무를 10번 찍었습니다.
+나무 넘어갑니다.
+```
+
+
+
+
+
+## 2-3. for 문
+
+```python
+for 변수 in 리스트(또는 튜플, 문자열):
+    수행할 문장1
+    수행할 문장2
+    ...
+    
+
+# 예제 1
+>>> test_list = ['one', 'two', 'three'] 
+>>> for i in test_list: 
+...     print(i)
+... 
+one 
+two 
+three
+
+
+# 예제 2
+>>> a = [(1,2), (3,4), (5,6)]
+>>> for (first, last) in a:
+...     print(first + last)
+...
+3
+7
+11
+
+
+# 예제 3
+marks = [90, 25, 67, 45, 80]
+
+number = 0 
+for mark in marks: 
+    number = number +1 
+    if mark >= 60: 
+        print("%d번 학생은 합격입니다." % number)
+    else: 
+        print("%d번 학생은 불합격입니다." % number)
+        
+        
+# range 함수 응용 1
+>>> add = 0 
+>>> for i in range(1, 11): 
+...     add = add + i 
+... 
+>>> print(add)
+55
+
+
+# range 함수 응용 2
+marks = [90, 25, 67, 45, 80]
+for number in range(len(marks)):
+    if marks[number] < 60: 
+        continue
+    print("%d번 학생 축하합니다. 합격입니다." % (number+1))
+
+
+# list와 함께
+>>> a = [1,2,3,4]
+>>> result = []
+>>> for num in a:
+...     result.append(num*3)
+...
+>>> print(result)
+[3, 6, 9, 12]
+
+
+# list 내포
+>>> a = [1,2,3,4]
+>>> result = [num * 3 for num in a]
+>>> print(result)
+[3, 6, 9, 12]
+    
+```
+
+
+
+
+
+
+
+# 3. 함수
+
+```python
+def 함수명(매개변수):
+    <수행할 문장1>
+    <수행할 문장2>
+    ...
+    
+    
+# 사용 예
+def add(a, b) 
+    return a + b
+
+def say(): 
+    return 'Hi' 
+
+
+# 가변인수
+>>> def add_many(*args): 
+...     result = 0 
+...     for i in args: 
+...         result = result + i 
+...     return result 
+>>>
+>>> result = add_many(1,2,3)
+>>> print(result)
+6
+>>> result = add_many(1,2,3,4,5,6,7,8,9,10)
+>>> print(result)
+55
+
+
+
+# 가변인수 2
+>>> def add_mul(choice, *args): 
+...     if choice == "add": 
+...         result = 0 
+...         for i in args: 
+...             result = result + i 
+...     elif choice == "mul": 
+...         result = 1 
+...         for i in args: 
+...             result = result * i 
+...     return result 
+... 
+>>>
+>>> result = add_mul('add', 1,2,3,4,5)
+>>> print(result)
+15
+>>> result = add_mul('mul', 1,2,3,4,5)
+>>> print(result)
+120
+
+
+# 다중 반환
+>>> def add_and_mul(a,b): 
+...     return a+b, a*b
+>>>
+>>> result = add_and_mul(3,4)
+result = (7, 12)
+>>> result1, result2 = add_and_mul(3, 4)
+result1 = 7
+result2 = 12
+
+```
+
+
+
+
+
+# 4. 클래스
+
+
+
+
+
+
+
+
 
 
 
