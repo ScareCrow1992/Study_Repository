@@ -282,7 +282,7 @@ head tag는 body tag에 비해 사용법이 까다롭다
 
 
 
-### **사운드, 비디오 - audio, video**
+#### 사운드, 비디오 - audio, video
 
 * 플러그인 없이 음악 및 영상을 재생할 수 있게 해주는 HTML5 태그
 
@@ -292,10 +292,12 @@ head tag는 body tag에 비해 사용법이 까다롭다
 
 
 
-### **입력 - form, input**
+#### **입력 - form**
 
 * 사용자에게 입력 받는 공간을 표시하는데 사용
 * 서버와의 연동이 필요, 우선은 기본적인 사용법만 알아본다
+* 연동 가능 태그 : input, select, textarea
+* 사실 대부분의 입력 수단들은 디자인이 구 시대적이므로 자바스크립트로 직접 만들어 사용한다
 
 
 
@@ -315,18 +317,6 @@ head tag는 body tag에 비해 사용법이 까다롭다
 브라우저로 열어보면 아래와 같다.
 
 
-
-
-    <form action="http://localhost/login.php">
-    	<p>아이디 : <input type="text" name="id"></p>
-   		<p>비밀번호 : <input type="password" name="pwd"></p>
-  		<p>주소 : <input type="text" name="address"></p>
-   		<input type="submit">
-	</form>
-
-
-
-
 ![image-20221016230556084](image-20221016230556084.png)
 
 비밀번호는 타입을 password로 하여 보이지 않지만, password123!@# 으로 설정했다.
@@ -344,8 +334,6 @@ form 태그의 각 속성은 아래와 같다
 | action    | 입력 데이터의 전달 위치를 지정 |
 | method    | 입력 데이터의 전달 방식을 선택 |
 
-
-
 action은 여기서 다룰 내용이 아니므로 우선 제외
 
 method는 GET과 POST로 나뉜다
@@ -362,7 +350,11 @@ method는 GET과 POST로 나뉜다
 
 
 
-#### **문자열 입력**
+##### **문자열 입력 - input type="text"**
+
+* 일반적으로 input 태그는 form 태그 내부에 있어야 하지만 Ajax 기술의 활성화로 안지켜지는 경우도 있다
+
+
 
 ```html
 <body>
@@ -375,29 +367,13 @@ method는 GET과 POST로 나뉜다
 </body
 ```
 
-
-
-
-    <form action="">
-        <p>text : <input type="text" name="id" value="default value"></p>
-        <p>password : <input type="password" name="pwd" value="default value"></p>
-        <p>textarea :
-            <textarea cols="50" rows="2">default value</textarea>
-        </p>
-    </form>
+![image-20221016233052299](image-20221016233052299.png)
 
 
 
 
 
-
-
-
-
-
-#### **선택**
-
-
+##### **선택 - select**
 
 ```html
 <body>
@@ -419,33 +395,11 @@ method는 GET과 POST로 나뉜다
 </body>
 ```
 
+![image-20221016233108072](image-20221016233108072.png)
 
 
 
-
-<form action="http://localhost/color.php">
-    <h1>색상</h1>
-    <select name="color">
-        <option value="red">붉은색</option>
-        <option value="black">검은색</option>
-        <option value="blue">파란색</option>
-    </select>
-    <h1>색상2 (다중선택)</h1>
-    <select name="color2" multiple>
-        <option value="red">붉은색</option>
-        <option value="black">검은색</option>
-        <option value="blue">파란색</option>
-    </select>
-    <input type="submit">
-</form>
-
-
-
-
-
-
-
-#### **버튼**
+##### 버튼 - input type="button"
 
 ```html
 <body>
@@ -458,14 +412,227 @@ method는 GET과 POST로 나뉜다
 </body>
 ```
 
+![image-20221016233136332](image-20221016233136332.png)
 
 
-<form action="http://localhost/form.php">
-    <input type="text">
-    <input type="submit" value="전송">
-    <input type="button" value="버튼" onclick="alert('hello world')">
-    <input type="reset">
-</form>
+
+##### 데이터 전송 - hidden
+
+```html
+<body>
+    <form action="http://localhost/hidden.php">
+        <input type="text" name="id">
+        <input type="hidden" name="hide" value="egoing">
+        <input type="submit">
+    </form>
+</body>
+```
+
+![image-20221016233650923](image-20221016233650923.png)
+
+텍스트 입력란이 하나만 보인다.
+
+하지만 텍스트를 입력하고 제출 버튼을 누르면 아래 url로 전송한다
+
+http://localhost/hidden.php?id=sedfx&hide=egoing
+
+hide=egoing 은 hidden 속성에 의해 숨겨진 값이다.
+
+
+
+
+
+##### 컨트롤의 제목 - label
+
+label 태그 : input 태그의 설명에 사용됨
+
+```html
+<body>
+    <form action="">
+        <p>
+            <label for="id_txt">text : </label>
+            <input id="id_txt" type="text" name="id" value="default value" />
+        </p>
+
+        <p>
+            <label for="password">password : </label>
+            <input id="password" type="password" name="pwd" value="default value" />
+        </p>
+
+        <p>
+            <label> textarea :
+                <textarea rows="2">default value</textarea>
+            </label>
+        </p>
+
+        <p>
+            <label>
+                <input type="checkbox" name="color" value="red" /> 붉은색
+            </label>
+            <label for="color_blue">
+                <input id="color_blue" type="checkbox" name="color" value="blue" /> 파란색
+            </label>
+        </p>
+    </form>
+</body>
+```
+
+![image-20221016235339076](image-20221016235339076.png)
+
+label 태그를 클릭해도 input 태그가 활성화 되는것을 볼 수 있다.
+
+
+
+
+
+
+
+#### 공간 분할(layout)
+
+* 웹 페이지의 레이아웃을 나누는 태그
+* 주요 태그 : div, span
+
+| 태그 이름 | 설명                                  |
+| --------- | ------------------------------------- |
+| div       | block 형식(쌓아감)으로 공간을 분할    |
+| span      | inline 형식(문장단위)으로 공간을 분할 |
+
+
+
+아래코드를 보면 이해에 도움이 됨
+
+```html
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="euc-kr">
+<title>CSS 속성</title>
+<style type="text/css">
+	body {
+		background-color: #e7e7e7;
+	}
+	#div1 {
+		background-color: #F9F249;
+		padding: 10px;
+        border : 1px solid black;
+	}
+	#span1 {
+		background-color: #36FFFF;
+        border : 1px solid black;
+	}
+</style> 
+</head>
+<body>
+	<div id="div1">
+		Koreans are in general pessimistic about the socio-economic 
+		circumstances surrounding them, a survey shows.
+		Among different age groups, college students and job 
+		seekers were most pessimistic, because of the tough 
+		job market. The findings are based on market research firm 
+		Macromillembrain's survey on five age groups each 
+		with 200 people _ a total of 1,000. The groups included 
+		college students and job seekers, office workers aged 20-39, 
+		office workers in their 40s and office workers in their 50s.
+	</div><br/>
+	<span id="span1">
+		Koreans are in general pessimistic about the socio-economic 
+		circumstances surrounding them, a survey shows.
+		Among different age groups, college students and job 
+		seekers were most pessimistic, because of the tough 
+		job market. The findings are based on market research firm 
+		Macromillembrain's survey on five age groups each 
+		with 200 people _ a total of 1,000. The groups included 
+		college students and job seekers, office workers aged 20-39, 
+		office workers in their 40s and office workers in their 50s.
+	</span>
+</body>
+</html>
+```
+
+![image-20221017004502984](image-20221017004502984.png)
+
+배경색과 border를 통해 레이아웃 구성 확인 가능
+
+* div : 박스형태로 영역이 설정, 레이아웃 내에서 정렬
+
+* span : 레이아웃 내에서 문장이 쓰여지듯이 줄단위로 영역 설정
+  * **inline 속성을 지닌 태그는 보통 방법으로는 width와 height로 크기 지정이 불가능**
+
+
+
+앞서 본문을 출력하기 위한 tag들은 대부분 block 형과 inline형 태그로 나뉜다
+
+| block 형식 태그                                              | inline 형식 태그                                             |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| \<div\>,  \<h#\> , \<p\>, 목록 태그(ol, ul, li), \<table\> , \<form\> | \<span\>, \<a\>, \<input\>, 글자 형식( \<i\>, \<b\>, \<small\>, \<sub\> ... ) |
+
+
+
+이미지와 멀티미디어 태그는 inline-block 형식을 지닌다.
+
+
+
+
+
+
+
+#### Symentic 구조 tag
+
+* HTML5태그의 가장 큰 변화
+* HTML5를 시멘틱 웹 페이지 라고도 하는 이유
+* 사용 목적 : 검색엔진등의 프로그램들이 html  코드를 보고 웹페이지의 구조를 효율적으로 알 수 있게끔 한다
+* 기능적으론 모두 다 div와 같음
+
+| 태그 이름 | 설명                                |
+| --------- | ----------------------------------- |
+| header    | 헤더를 의미                         |
+| nav       | 내비게이션을 의미                   |
+| aside     | 사이드에 위치하는 공간을 의미       |
+| section   | 여러 중심 내용을 감싸는 공간을 의미 |
+| article   | 글자가 많이 들어가는 부분을 의미    |
+| footer    | 푸터를 의미                         |
+
+
+
+가령 symentic tag를  활용한 웹페이지는 아래와 같다.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML5 Basic</title>
+</head>
+<body>
+    <header>
+        <h1>HTML5 Header</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#">Menu - 1</a></li>
+            <li><a href="#">Menu - 2</a></li>
+            <li><a href="#">Menu - 3</a></li>
+        </ul>
+    </nav>
+    <section>
+        <article>
+            <h1>Lorem ipsum dolor sit amet</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </article>
+        <article>
+            <h1>Lorem ipsum dolor sit amet</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </article>
+    </section>
+    <footer>
+        <address>서울특별시 강서구 내발산동</address>
+    </footer>
+</body>
+</html>
+```
+
+시멘틱 태그의 기능은 div와 동일하므로, div만 써도 결과물엔 영향 없다.
+
+
 
 
 
