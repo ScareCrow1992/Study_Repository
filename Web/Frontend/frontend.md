@@ -594,6 +594,42 @@ label 태그를 클릭해도 input 태그가 활성화 되는것을 볼 수 있�
 
 
 
+\<header\> - 머리글, 제목, 헤더
+
+\<nav\> - 네이게이션, 목차, 리스트 등 다른 페이지로의 이동을 위한 링크 공간을 위주로 표현
+
+\<aside\> - 좌측과 우측 사이드 위치의 공간을 의미하며, 본문 외에 부수적인 내용을 주로 표현하는 태그
+
+\<section\> - 말그데로 주제, 카테고리 별로 섹션을 구분하는 용도의 태그로 주로 사용. 같은 테마를 가진 여러개의 콘텐츠의 그룹화
+
+\<article\> - 기사, 블로그 등 텍스트 위주의 페이지를 구성할때 주로 사용. 
+
+\<footer\> - 바닥글, 문서 하단에 들어가는 정보 구분 공간을 표현하는 태그
+
+\<address\> - 콘텐츠 작성자나 사이트 소유자의 정보등을 부가적으로 담는 기능
+
+\<hgroup\> - 제목과 관련된 부제목을 묶는 태그
+
+\<main\> - 이름처럼 문서 \<body\>의 중심 주제, 주요 내용 또는 응용 프로그램의 중심 기능과 직접 관련되어나 확장되는 콘텐츠를 나타낸다.
+
+\<details\> - 주변 문맥에서 표시된 구절의 관련성 또는 중요성으로 인해 참조 또는 표기 목적으로 표시되거나 강조된 텍스트를 나타냅니다.
+
+\<figure\> - 이미지, 다이어그램, 사진 등 독립적인 컨튼츠 정의시 사용
+
+\<figcaption\> - \<figure\> 요소의 설명 캔션(caption) 정의
+
+\<mark\> - 현재 맥락에 관련이 깊거나 중요한 부분 강조
+
+\<time\> - 시간의 특정 지점 또는 구간, datetime과 같은 속성을 이용해 알림같은 기능 구현
+
+\<summary\> - details 요소에 대한 요약, 캡션 또는 범례를 지정합니다. summary 요소를 클릭하면 상위 details 요소의 상태가 열리고 닫힙니다.
+
+
+
+
+
+
+
 가령 symentic tag를  활용한 웹페이지는 아래와 같다.
 
 ```html
@@ -633,6 +669,446 @@ label 태그를 클릭해도 input 태그가 활성화 되는것을 볼 수 있�
 시멘틱 태그의 기능은 div와 동일하므로, div만 써도 결과물엔 영향 없다.
 
 
+
+
+
+# 2. CSS3 기본
+
+## 2-1. 선택자
+
+* 특정한 HTML 태그의 선택에 사용됨
+
+
+
+https://www.w3schools.com/cssref/css_selectors.asp
+
+
+
+
+
+## 2-2. 스타일 속성
+
+### 2-2-1. CSS3 단위
+
+- 스타일 속성은 여러 종류의 값을 취할 수 있다
+  - 키워드 : 스타일 속성에 따라 별도의 키워드가 존재
+  - 크기 : %, em, px ...
+  - 색상
+    - 키워드 : red, orange, blue...
+    - HEX 단위 : #000000
+    - RGB 단위 : rgb(red, green, blue)
+    - RGBA 단위 : rgba(red, green, blue, alpha)
+  - URL : CSS3에서 이미지 파일이나 폰트 파일을 불러올때 사용
+    - url('address')
+
+```html
+<style>
+    h1{
+        <!--키워드-->
+        display:block;
+        
+        <!--크기-->
+        margin: 10px;
+        font-size: 200%;
+        line-height: 2em;
+        
+        <!--색상-->
+        background-color: red;
+        
+        <!--URL-->
+        background-image: url('Other/Desert.jpg');
+    }
+</style>
+```
+
+
+
+
+
+### 2-2-2. 가시 속성
+
+* 정의 : 태그가 화면에 보이는 방식을 지정
+
+
+
+#### display 속성
+
+* 다양한 속성을 지녔으며, 모든 display 속성을 지원하는 웹 브라우저는 없음
+* 중요한 display 속성만 정리
+
+| 키워드 이름  | 설명                              |
+| ------------ | --------------------------------- |
+| none         | 태그를 화면에서 보이지 않게 만듬  |
+| block        | 태그를 block 형식으로 지정        |
+| inline       | 태그를 inline 형식으로 지정       |
+| inline-block | 태그를 inline-block 형식으로 지정 |
+
+
+
+block과 inline의 특징은 앞서 살펴보았다.
+
+
+
+inline-block이 새로 보이는데, inline과 마찬가지로 문장단위로 공간을 분할한다.
+
+
+
+inline과 inline-block의 차이는 무엇인가?
+
+inline : 크기 속성(height, width) 적용 불가
+
+inline-block : 크기 속성 적용 가능
+
+
+
+```html
+<!DOCTYPE html>
+
+<head>
+    <style>
+        #group1{
+            display: inline;
+            background-color: yellow;
+            margin: 10px;
+
+            /*inline 이므로 아래 크기 속성이 무효*/
+            width:300px; height: 100px;
+        }
+
+        #group2{
+            display: inline-block;
+            background-color: yellowgreen;
+            margin: 10px;
+
+            /*inline-block 이므로 크기 속성이 유효*/
+            width:300px; height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span>Dummy</span>
+        <span id="group1">Lorem ipsum dolor sit amet, consectetur adipiscing elit,</span>
+        <span>Dummy</span>
+    </div>
+
+    <div>
+        <span>Dummy</span>
+        <span id="group2">Lorem ipsum dolor sit amet, consectetur adipiscing elit,</span>
+        <span>Dummy</span>
+    </div>
+</body>
+```
+
+
+
+
+
+![image-20221017225049229](image-20221017225049229.png)
+
+
+
+### 2-2-3. 박스 속성
+
+- 웹페이지의 레이아웃 구성에 매우 중요한 스타일 속성
+  - height, width : 글씨를 감싸는 영역의 크기
+  - margin - 레이아웃의 테두리 굵기
+  - border - 경계선의 굵기
+  - padding - 글씨 구역과 경계선 사이의 굵기
+- margin과 padding은 위, 오른쪽, 아래, 왼쪽에 각각 다른 값을 지정할 수 있다.
+  - 2개 값만 지정하여 위아래, 왼쪽오른쪽 크기도 지정 가능
+
+![img](https://k.kakaocdn.net/dn/bg4GmB/btqJWTqyHYz/TfMEU4mrGWuBaMYxC75OFK/img.png)
+
+```html
+<!DOCTYPE html>
+
+<head>
+    <style>
+        #group1{
+            background-color: yellowgreen;
+            margin: 0px;
+            padding : 10px;
+            border :10px solid green;
+            width:200px; height: 100px;
+        }
+
+        #group2{
+            background-color: skyblue;
+            margin: 0px;
+            border: 10px solid blue;
+            padding : 10px;
+            width:200px; height: 100px;
+        }
+
+        #group3{
+            background-color: orange;
+            margin: 0px;
+            border: 10px solid red;
+            padding : 10px;
+            width:200px; height: 100px;
+        }
+
+    </style>
+</head>
+<body>
+        <div id="group1">Lorem ipsum dolor sit amet, consectetur adipiscing elit,</div>
+        <div id="group2">Lorem ipsum dolor sit amet, consectetur adipiscing elit,</div>
+        <div id="group3">Lorem ipsum dolor sit amet, consectetur adipiscing elit,</div>    
+</body>
+```
+
+![image-20221017230752942](image-20221017230752942.png)
+
+진한색의 테두리가 border 만큼의 굵기를 지니며, 본문은 테두리로부터 padding 만큼 떨어진곳에서 쓰이기 시작한다.
+
+
+
+여기서 파란색 상자(group2)에만 margin에 크기를 부여해본다.
+
+```html
+<style>
+	#group2{
+        background-color: skyblue;
+        margin: 50px;
+        border: 10px solid blue;
+        padding : 10px;
+        width:200px; height: 100px;
+    }
+</style>
+```
+
+![image-20221017231000488](image-20221017231000488.png)
+
+파란 상자의 레이 아웃이 더 커진것 처럼 보인다.
+
+
+
+따라서 태그 전체 크기는 아래공식을 따른다.
+
+전체 너비 = width + 2 * (margin + border + padding)
+
+전체 높이 = height + 2 * (margin + border + padding)
+
+
+
+
+
+
+
+
+
+### 2-2-4. 테두리
+
+
+
+### 2-2-5. 배경
+
+* background-image
+* background-size
+* background-repeat
+* background-color
+* background-position
+  * background-position: 키워드;
+  * background-position: X축크기;
+  * background-position: X축크기 Y축크기;
+
+
+
+### 2-2-6. 폰트
+
+* font-size
+* font-family
+* font-style
+* font-weight
+* line-height
+
+
+
+**글자 중앙 정렬**
+
+- 수평 정렬 : text-align 속성에 "center" 값 부여
+- 수직 정렬 : line-height 속성에 레이아웃의 height 값을 부여
+
+```html
+<!DOCTYPE html>
+
+<head>
+    <style>
+        .font_big { font-size: 2em; }
+        .font_italic { font-style: italic; }
+        .font_bold { font-weight: bold; }
+        
+        /*수평 정렬*/
+        .font_center { text-align: center; }
+        
+
+        .button{
+            width: 150px; height: 70px;
+            background-color : orange;
+            border : 10px solid black;
+            border-radius: 30px;
+
+        }
+
+        .button > a{
+            display: block;
+            /*수직 정렬*/
+            line-height: 70px;
+        }
+
+    </style>
+</head>
+<body>
+    <article class="button">
+        <a href="#!" class="font_big font_italic font_bold font_center" >Click</a>
+    </article>
+</body>
+```
+
+![image-20221017233616089](image-20221017233616089.png)
+
+
+
+
+
+
+
+### 2-2-7. 위치 속성
+
+속성 : position 
+
+- 절대 위치(absolute) : 요소의 X 좌표와 Y좌표를 설정해 절대 위치 지정
+- 상대 위치(relative) :  요소를 입력한 순서를 통해 상대적으로 위치  지정
+
+absolute로 설정하면 레이아웃을 차지하지 않는다. 그러므로 자식의 position이 absolute이면 부모에게 relative를 부여하여 레이아웃을 구성해야한다.
+
+
+
+### 2-2-8. overflow 속성
+
+* 내부의 요소가 부모의 범위를 벗어날 때 표시 방법을 지정
+  * hidden : 영역을 벗어나면 안보이게
+  * scroll : 영역을 벗어난 부분은 스크롤로 만듬
+    * overflow-x와 overflow-y로 특정 방향으로만 스크롤 생성 가능
+
+
+
+### 2-2-9. float 속성
+
+* left : 태그를 왼쪽에 붙인다.
+* right : 태그를 오른쪽에 붙인다.
+
+
+
+float는 크게 2가지 목적으로 쓰인다
+
+
+
+#### **부유** 하는 대상을 만들때 사용
+
+초기에는 img 태그에 사용하여 이미지가 글자위에 **부유**하는 효과를 주는것이 목표였음
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Float Style Property</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <img src="hanbit.jpg"/>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <p>In hac habitasse platea dictumst. Donec lobortis augue a metus.</p>
+</body>
+</html>
+```
+
+<img src="image-20221018001235691.png" alt="image-20221018001235691" style="zoom:67%;" />
+
+
+
+아래와 같이 float 속성을 추가해보면
+
+```html
+<style>
+    img{
+        float:left;
+    }
+</style>
+```
+
+
+
+<img src="image-20221018001439358.png" alt="image-20221018001439358" style="zoom: 80%;" />
+
+이미지가 글자 위에 부유하고 있다.
+
+
+
+하지만 오늘날 float는 다른 방식으로도 즐겨 쓰인다.
+
+
+
+#### **float을 이용한 수평 정렬**
+
+float를 이용하념 block 타입의 태그를 수평정렬 할 수 있다.
+
+(inline은 문장출력형식이므로 수평정렬과는 거리가 멀다.)
+
+단, **부유** 효과를 제거하고 수평정렬을 하기 위해선 float이 부여된 태그의 부모에 overfloat 속성을 부여하고 hidden 키워드를 적용해야함
+
+이를 **One True Layout** 방식이라 함
+
+
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Float Style Property</title>
+    <style>
+        body{
+            width: 420px;
+            margin: 0 auto;
+        }
+
+        #wrap{
+            overflow: hidden;
+        }
+
+        #aside{
+            width:180px;
+            float:left;
+        }
+
+        #section{
+            width: 240px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="header"><h1>Header</h1></div>
+    <div id="navigation"><h1>Navigation</h1></div>
+    <div id="wrap">
+        <div id="aside">
+            <h1>Aside</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div id="section">
+            <h1>Section</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+    </div>
+    <div id="footer"><h1>Footer</h1></div>
+</body>
+</html>
+```
+
+<img src="image-20221018002907809.png" alt="image-20221018002907809" style="zoom:80%;" />
 
 
 

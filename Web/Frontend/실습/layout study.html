@@ -1,52 +1,41 @@
 <!DOCTYPE html>
-
+<html>
 <head>
+    <title>Float Style Property</title>
     <style>
-        .root {
-            position: relative;
-            height: 300px;
-            width: 300px;
-            border: 1px solid black;
-            background: black;
+        body{
+            width: 420px;
+            margin: 0 auto;
         }
 
-        .Group0 {
-            position: absolute;
-            width: 150px;
-            height: 150px;
-            background: yellow;
-            right: 50px;
-            bottom: 10px;
-
+        #wrap{
+            overflow: hidden;
         }
 
-        .Group1 {
-            position: absolute;
-            left : 20px; top : 20px;
-            width: 70px;
-            height: 70px;
-            background: green;
+        #aside{
+            width:180px;
+            float:left;
         }
 
-        .Group2 {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: red;
-
-            right: 5px;
-            bottom: 5px;
+        #section{
+            width: 240px;
+            float: left;
         }
     </style>
 </head>
-
 <body>
-    <div class="root">
-        <div class="Group0">
-            <div class="Group1">
-                <div class="Group2">
-                </div>
-            </div>
+    <div id="header"><h1>Header</h1></div>
+    <div id="navigation"><h1>Navigation</h1></div>
+    <div id="wrap">
+        <div id="aside">
+            <h1>Aside</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div id="section">
+            <h1>Section</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </div>
     </div>
+    <div id="footer"><h1>Footer</h1></div>
 </body>
+</html>
