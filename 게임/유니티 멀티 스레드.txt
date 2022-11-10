@@ -1,0 +1,29 @@
+https://www.reddit.com/r/Unity3D/comments/u0an55/is_unity3d_game_single_thread_or_multithread/
+
+멀티스레드 : 애니메이션, 렌더링, 오디오 등
+싱글스레드 : monobehaviour 스크립트
+
+그래서 게이밍 성능은 i5가 더 좋음
+
+유니티는 싱글스레드가 빠른 CPU가 유리
+
+빌드시에는 링크 단계부터 싱글CPU로 들어감
+빌드시에도 CPU 활용률이 낮음
+
+게임 로직상에서 임계영역 문제발생할 일 없음
+
+
+
+
+https://docs.unity3d.com/Manual/ExecutionOrder.html
+
+ state machine 판별은 멀티스레드지만
+ 일부 callback 함수가 추가되면 싱글스레드
+
+
+
+
+
+https://unity.com/kr/dots#:~:text=DOTS%EB%8A%94%20%EA%B0%84%ED%8E%B8%ED%95%9C%20%EC%83%8C%EB%93%9C%EB%B0%95%EC%8A%A4,%EC%95%8A%EB%8F%84%EB%A1%9D%20%EC%B5%9C%EC%A0%81%ED%99%94%ED%95%A0%20%EC%88%98%20%EC%9E%88%EC%8A%B5%EB%8B%88%EB%8B%A4.
+
+dots를 통해 멀티스레드 기술 지원중이지만 현재 요원함
